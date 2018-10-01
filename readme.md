@@ -1,6 +1,6 @@
 # Exercício NodeJS - Lista de Contatos
 
-## 1) Crie um script que recebe três parâmetros na linha de comando: nome, sobrenome e email. Ao receber esses parâmetros, ele deve gerar um arquivo CSV com as mesmas colunas e inserir os dados do terminal nesse arquivo.
+### 1) Crie um script que recebe três parâmetros na linha de comando: nome, sobrenome e email. Ao receber esses parâmetros, ele deve gerar um arquivo CSV com as mesmas colunas e inserir os dados do terminal nesse arquivo.
 
 Comando:
 `node index.js Jack Bauer jack@mastertech.tech`
