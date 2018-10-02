@@ -4,19 +4,37 @@ const nome = process.argv[2];
 const sobrenome = process.argv[3];
 const email = process.argv[4];
 
-let cabecalho = 'nome,sobrenome,email\n';
-let linha = `${nome},${sobrenome},${email}\n`;
+let cabecalho = 'nome,sobrenome,email';
+let novaLinha = `${nome},${sobrenome},${email}`;
 
 fs.readFile('dados.csv', {encoding: 'utf8'}, function(erro, dados){
-    let csv;
-
-    if(erro){
-        csv = cabecalho + linha;
+    let linhas;
+    
+    if(!dados){
+        linhas = [cabecalho, novaLinha];
     }else{
-        csv = linha;
+        linhas = dados.split('\n');
+
+        for(let i = 1; i < linhas.length; i++){
+            let linha = linhas[i];
+    
+            if(novaLinha < linha){
+                linhas.splice(i, 0, novaLinha);
+                inserido = true;
+                break;
+            }
+
+            if(i == linhas.length - 1){
+                linhas.push(novaLinha);
+                break;
+            }
+        }
+        
     }
 
-    fs.writeFile('dados.csv', csv, {flag: 'a'}, function salvar(erro){
+    let csv = linhas.join('\n');
+
+    fs.writeFile('dados.csv', csv, {flag: 'w'}, function(erro){
         if(erro){
             console.log(erro);
             return;
